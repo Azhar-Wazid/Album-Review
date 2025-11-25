@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Track{% endblock %}
+
+{% block body %}
+    <h1>Add Tracks</h1>
+    {{ form_start(addTrackForm) }}
+
+    <div id="track_input" data-prototype="{{ form_widget(addTrackForm.tracks.vars.prototype)|e('html_attr') }}">
+        {% for track in addTrackForm.tracks %}
+            <div class="track-row" style="border: #555555 1px solid; padding: 10px; border-radius: 10px;">
+                {{ form_row(track) }}
+                <button type="button" class="btn btn-danger remove-track">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" class="btn btn-primary" id="add_track">
+        Add Track
+    </button>
+
+    <button type="submit" class="btn btn-success" id="submit_track">
+        Submit
+    </button>
+
+    {{ form_end(addTrackForm) }}
+
+    <script>
+        const addInput = document.getElementById('track_input');
+        const addButton = document.getElementById('add_track');
+        let index = addInput.children.length;
+
+        // duplicates input boxes and remove button
+        addButton.addEventListener('click', () => {
+            let prototype = addInput.dataset.prototype.replace(/__name__/g, index);
+            prototype = `<div class="track-row" style="border: #555555 1px solid; padding: 10px; border-radius: 10px;">
+                            ${prototype}
+                            <button type="button" class="btn btn-danger remove-track">Remove</button>
+                        </div>`;
+            addInput.insertAdjacentHTML('beforeend', prototype);
+            index++;
+        });
+
+        // makes remove button work
+        addInput.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-track')) {
+                e.target.closest('.track-row').remove();
+            }
+        });
+    </script>
+{% endblock %}

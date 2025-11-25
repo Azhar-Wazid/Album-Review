@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create an Album{% endblock %}
+
+{% block body %}
+    {{ form_errors(createAlbumForm) }}
+
+    {{ form_start(createAlbumForm) }}
+    <main class="d-flex justify-content-center align-items-center text-center" style="height: 70vh; margin-top: 5vh;">
+        <div>
+            <h1 class="mb-4">Create an Album</h1>
+            <div style="display: flex; gap: 40px; align-items: flex-start;" class="mx-5">
+                <div style="flex: 1; border-right: 1px solid black; ">
+                    {{ form_widget(createAlbumForm.albumName) }}
+                    {{ form_widget(createAlbumForm.artistID) }}
+                    {{ form_widget(createAlbumForm.coverImage) }}
+                    {{ form_widget(createAlbumForm.releaseDate) }}
+
+                </div>
+                <div style="flex: 1;">
+                    <label class="form-label">Genres</label>
+                    {{ form_widget(createAlbumForm.genreID) }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-success">Register</button>
+        </div>
+
+    </main>
+    {{ form_end(createAlbumForm) }}
+{% endblock %}

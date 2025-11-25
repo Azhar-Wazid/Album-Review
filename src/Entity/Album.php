@@ -8,6 +8,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
+#[ORM\Table(uniqueConstraints: [
+    new ORM\UniqueConstraint(name: 'unique_album', columns: ['artist_id_id', 'album_name'])
+])]
 class Album
 {
     #[ORM\Id]
@@ -44,6 +47,10 @@ class Album
      */
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'albums')]
     private Collection $genreID;
+
+    #[ORM\ManyToOne(inversedBy: 'albums')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $userID = null;
 
     public function __construct()
     {
@@ -185,6 +192,18 @@ class Album
     public function removeGenreID(Genre $genreID): static
     {
         $this->genreID->removeElement($genreID);
+
+        return $this;
+    }
+
+    public function getUserID(): ?User
+    {
+        return $this->userID;
+    }
+
+    public function setUserID(?User $userID): static
+    {
+        $this->userID = $userID;
 
         return $this;
     }

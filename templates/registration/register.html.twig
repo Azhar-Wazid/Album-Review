@@ -3,18 +3,26 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <main class="d-flex justify-content-center align-items-center text-center" style="height: 70vh; margin-top: 5vh;">
+        <div>
+            <h1 class="mb-4">Register</h1>
+            {{ form_widget(registrationForm.email) }}
+            {{ form_widget(registrationForm.username) }}
+            {{ form_widget(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            <p class="mb-2">
+                {{ form_label(registrationForm.agreeTerms) }}
+                {{ form_widget(registrationForm.agreeTerms) }}
+            </p>
 
-        <button type="submit" class="btn">Register</button>
+
+            <button type="submit" class="btn btn-lg btn-success">Register</button>
+        </div>
+    </main>
     {{ form_end(registrationForm) }}
+
 {% endblock %}

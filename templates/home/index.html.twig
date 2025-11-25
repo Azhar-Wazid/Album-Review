@@ -2,5 +2,8 @@
 
 {% block body %}
 <h1>Welcome to Album Review</h1>
-    <a href="{{ path('register') }}">Register</a>
+    {% if app.user %}
+        {# User is logged in #}
+        Hello {{ app.user.username }}!
+    {% endif %}
 {% endblock %}

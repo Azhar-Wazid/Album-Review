@@ -1,0 +1,40 @@
+:root {
+    --primary: #1F1F1F;      /* dark */
+    --secondary: #2e8b57;    /* green */
+    --danger: #d9534f;       /* red */
+
+    --body-color: #ffffff;   /* white */
+}
+
+body {
+    color: var(--body-color);
+    background-color: var(--primary);
+}
+
+a{
+    color: var(--secondary);
+}
+
+.form-control{
+    background-color: var(--primary);
+    color: white;
+}
+
+.form-control:focus{
+    background-color: var(--primary);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #bfbfbf;
+    opacity: 1;
+}
+
+.albumTable-img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+}
+
+

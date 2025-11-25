@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Albums{% endblock %}
+
+{% block body %}
+<h1>Albums</h1>
+    <table class="albums table table-dark table-hover">
+        <tr>
+            <th>Album</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Release Date</th>
+        </tr>
+        {% for album in albums %}
+        <tr>
+            {% if album.coverImage is not null %}
+                <td><img src="{{ asset('uploads/cover_image/' ~ album.coverImage) }}" class="albumTable-img"></td>
+            {% else %}
+                <td><img src="{{ asset('uploads/cover_image/default-album.jpg') }}" class="albumTable-img"></td>
+            {% endif %}
+            <td><a >{{ album.albumName }}</a></td>
+            <td>{{ album.artistID.name }}</td>
+            <td>{{ album.ReleaseDate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
