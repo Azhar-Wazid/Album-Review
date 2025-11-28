@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Album;
 use App\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,6 +15,16 @@ class ReviewRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Review::class);
+    }
+    public function getAverageScoreByAlbum(Album $album): ?float
+    {
+        return $this->createQueryBuilder('r')
+            ->select('AVG(r.reviewScore) as avgScore')
+            ->where('r.albumID = :album')
+            ->setParameter('album', $album)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
     }
 
     //    /**

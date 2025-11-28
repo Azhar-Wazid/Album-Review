@@ -10,7 +10,7 @@
         <div>
             <h1 class="mb-4">Create an Album</h1>
             <div style="display: flex; gap: 40px; align-items: flex-start;" class="mx-5">
-                <div style="flex: 1; border-right: 1px solid black; ">
+                <div style="flex: 1;">
                     {{ form_widget(createAlbumForm.albumName) }}
                     {{ form_widget(createAlbumForm.artistID) }}
                     {{ form_widget(createAlbumForm.coverImage) }}
@@ -24,7 +24,6 @@
             </div>
             <button type="submit" class="btn btn-lg btn-success">Register</button>
         </div>
-
     </main>
     {{ form_end(createAlbumForm) }}
 {% endblock %}

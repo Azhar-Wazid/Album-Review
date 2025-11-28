@@ -30,7 +30,12 @@ class Album
     /**
      * @var Collection<int, Review>
      */
-    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'albumID')]
+    #[ORM\OneToMany(
+        targetEntity: Review::class,
+        mappedBy: 'albumID',
+        cascade: ['remove'],
+        orphanRemoval: true
+    )]
     private Collection $reviews;
 
     #[ORM\ManyToOne(inversedBy: 'albums')]
@@ -39,7 +44,12 @@ class Album
     /**
      * @var Collection<int, Track>
      */
-    #[ORM\OneToMany(targetEntity: Track::class, mappedBy: 'albumID')]
+    #[ORM\OneToMany(
+        targetEntity: Track::class,
+        mappedBy: 'albumID',
+        cascade: ['remove'],
+        orphanRemoval: true
+    )]
     private Collection $tracks;
 
     /**
@@ -207,4 +217,17 @@ class Album
 
         return $this;
     }
+
+    public function getAverageReviewScore(): ?float{
+        if ($this->reviews->count() === 0) {
+            return null;
+        }
+
+        $total = 0;
+        foreach ($this->reviews as $review) {
+            $total += $review->getReviewScore();
+        }
+        return $total / $this->reviews->count();
+    }
+
 }

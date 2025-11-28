@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User Roles{% endblock %}
+
+{% block body %}
+    <h1>Assign User Role</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if success %}
+        <p>{{ success }}</p>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form.username) }}
+    {{ form_widget(form.roles) }}
+    <button class="btn btn-success">Save Roles</button>
+    {{ form_end(form) }}
+{% endblock %}

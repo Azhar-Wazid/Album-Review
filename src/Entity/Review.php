@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Review
 {
     #[ORM\Id]
@@ -85,6 +86,12 @@ class Review
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getUserID(): ?User

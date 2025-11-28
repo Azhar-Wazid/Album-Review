@@ -31,10 +31,52 @@ a{
 }
 
 .albumTable-img {
-    width: 80px !important;
-    height: 80px !important;
-    object-fit: cover !important;
-    border-radius: 6px !important;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
 }
+
+.album-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 60px;
+}
+
+.custom-table th {
+    background-color: var(--primary);
+    color: white;
+}
+
+.custom-table tr td {
+    background-color: var(--primary);
+    color: white;
+}
+
+.square{
+    width:2.2em;
+    height:2.2em;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:green;
+    color:#fff;
+    border-radius:4px;
+}
+
+.profile-Image{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 360px;
+}
+.profile-Icon{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 360px;
+}
+
 
 

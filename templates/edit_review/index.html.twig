@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EditReviewController!{% endblock %}
+
+{% block body %}
+    <h1>Edit Review</h1>
+    <h3>{{ review.albumID.albumName }} &#x2022; {{ review.albumID.artistID.name }}</h3>
+    {{ form_start(form, { attr: {id: 'reviewForm'}}) }}
+    {{ form_row(form.reviewScore) }}
+    {{ form_widget(form.reviewDetails) }}
+    <button type="submit" class="btn btn-success mt-3 me-1" id="submitReview">Save Changes</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EditProfileController!{% endblock %}
+
+{% block body %}
+    {% if user.profilePicture is not null %}
+        <img src="{{ asset('uploads/profile_picture/' ~ user.profilePicture) }}" class="profile-Image">
+    {% else %}
+        <img src="{{ asset('uploads/profile_picture/defaultpfp.jpg') }}" class="profile-Image">
+    {% endif %}
+{{ form_start(form) }}
+    {{ form_row(form.profilePicture) }}
+    {{ form_row(form.bio) }}
+    <button type="submit" class="btn btn-success">Save Changes</button>
+{{ form_end(form) }}
+{% endblock %}
